@@ -3,18 +3,15 @@ const app = express();
 const tasks = require("./routes/tasks");
 const connectDB = require("./db/connect");
 require("dotenv").config();
-// if you want run locally uncommented port and app.listen
-// const port = 3000
+const port = 3000
 
 app.use(express.static("./public"));
 app.use(express.json());
 app.use("/api/v1/tasks", tasks);
 
-// app.listen(port, () => {
-//   console.log(`Server is listening on ${port}`);
-// });
-
-// Connect to the database
+app.listen(port, () => {
+  console.log(`Server is listening on ${port}`);
+});
 connectDB(process.env.MONGO_DB)
   .then(() => {
     console.log("Connected to MongoDB");
